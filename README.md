@@ -16,6 +16,7 @@ https://glowing-creponne-b62856.netlify.app/
 
 - Install nodejs
 - Edit the "REACT_APP_SIGNALLING_SERVER" in environment configuration to point to your signaling server (code example in [here](https://github.com/rsatrio/WebRTC-Signaling-Server) )
+- Edit the "REACT_APP_GA_ID" in environment configuration with your Google Analytics Measurement ID
 - This client used STUN and Turn Server from OpenRelay Project (https://www.metered.ca/tools/openrelay/). You can change it in the App.js to use your own STUN/TURN server
 - Run this to install required NPM and build the application:
 

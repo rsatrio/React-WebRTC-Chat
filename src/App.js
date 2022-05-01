@@ -8,6 +8,7 @@ import './chat.css';
 import pic1 from './pic1.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactGA from "react-ga4";
 
 
 import { useEffect, useState } from 'react';
@@ -20,6 +21,7 @@ var friendToName = new Map();
 
 var rtcPeers = new Map();
 var ws1;
+var reactGA;
 
 function App() {
 
@@ -47,15 +49,20 @@ function App() {
 
 
   useEffect(() => {    
-
+    ReactGA.initialize(process.env.REACT_APP_GA_ID);
+    ReactGA.send({ hitType: "pageview", page: "/" });
     document.getElementById('toSend').onkeydown = (event) => {
       
 
       if (event.key == 'Enter') {
         event.preventDefault();
         sendChat();
+        
       }
     };
+   
+
+
     document.getElementById('toSend').setAttribute('disabled', 'true');
     document.getElementById('btnSend').setAttribute('disabled', 'true');
     document.getElementById('status-online').style.display = 'none';
@@ -120,6 +127,7 @@ function App() {
       return;
     }
     startWebSocket();
+    ReactGA.event({action:'login',category:'login'});
   }
 
   function startWebSocket() {
@@ -467,6 +475,7 @@ function App() {
     });
     addChatLine(document.getElementById('toSend').value, 'me', 'Me');
     document.getElementById('toSend').value = '';
+    
   }
 
   function clickShowChat() {
@@ -483,6 +492,7 @@ function App() {
     channels = [];
     channelUsers.forEach((a, b) => document.getElementById(a).remove());
     channelUsers.clear();
+    ReactGA.event({action:'logout',category:'logout'});
   }
 
 
@@ -491,11 +501,11 @@ function App() {
 
       return (
 
-        <div class="container" className='h-100'>
+        <div className="container" className='h-100'>
           <ToastContainer />
           <div id="container1" >
             <div className="row">
-              <button id="btnShowLogin" class="btn btn-primary" type="button" data-bs-toggle="collapse"
+              <button id="btnShowLogin" className="btn btn-primary" type="button" data-bs-toggle="collapse"
                 data-bs-target="#multiCollapseExample1" aria-expanded="false"
                 aria-controls="multiCollapseExample1">Show Login/Chat</button>
             </div>
@@ -507,12 +517,12 @@ function App() {
 
                       <header>
                         <input type="text" id="myUsername" placeholder="Put Username" />
-                        <div class="row">
+                        <div className="row">
 
                           <Button variant="contained" id="btnLogin" color="success" className='mt-3 col'
                             type='button' onClick={() => login()}>Login</Button>
                         </div>
-                        <div class="row">
+                        <div className="row">
                           <Button variant="contained" id="btnDisconnect" color="success" className='mt-3 mr-1 col'
                             type='button' onClick={() => disconnectAll()}>Disconnect</Button>
                         </div>
@@ -543,8 +553,8 @@ function App() {
 
                   <header >
                     <div>
-                      <p class="text-success " id="status-online">You are online</p>
-                      <p class="text-danger" id="status-offline">You are offline</p>
+                      <p className="text-success " id="status-online">You are online</p>
+                      <p className="text-danger" id="status-offline">You are offline</p>
                     </div>
 
                   </header>
@@ -582,8 +592,8 @@ function App() {
                     <Button variant="contained" color="success" id='btnSend'
                       className='float-right'
                       type='button' onClick={() => sendChat()}>Send</Button><br /><br />
-                    <div class="col-md-12 text-center bg-black text-white">
-                      <p class="copyright">
+                    <div className="col-md-12 text-center bg-black text-white">
+                      <p className="copyright">
                         Copyright ©<script>document.write(new Date().getFullYear());</script>2022 Rizky Satrio All rights reserved
                       </p>
                     </div>

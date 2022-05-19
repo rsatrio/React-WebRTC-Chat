@@ -593,7 +593,7 @@ function App() {
                       className='float-right'
                       type='button' onClick={() => sendChat()}>Send</Button><br /><br />
                     <div className="col-md-12 text-center bg-black text-white">
-                      <p className="copyright">
+                      <p>
                         Copyright ©<script>document.write(new Date().getFullYear());</script>2022 Rizky Satrio All rights reserved
                       </p>
                     </div>

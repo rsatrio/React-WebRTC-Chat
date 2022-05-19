@@ -27,7 +27,7 @@ npm run build
 ```
 
 ## Explanation
-You can find the detail explanation of the signaling server flow in [this medium blog](https://mrizkysatrio.medium.com/webrtc-chat-application-772539ae97b7).
+You can find the detail explanation of this application in [this medium blog](https://mrizkysatrio.medium.com/webrtc-chat-application-772539ae97b7).
 
 
 ## Feedback
